@@ -10,14 +10,12 @@ function countLetters(word){
       continue;
     }
     else if (letter[i] in counter){
-      counter[letter[i]] += 1;
+      counter[letter[i]] = counter[letter[i]] + ", " + String(i);
     }
     else {
-      counter[letter[i]] = 1;
+      counter[letter[i]] = String(i);
     }
   }
   return counter;
 }
 console.log(countLetters(word));
-
-
