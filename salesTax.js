@@ -26,30 +26,43 @@ var companySalesData = [
 function calculateSalesTax(salesData, taxRates) {
    // Implement your code here
   var total =[];
-  var results = {};
   var length = 0;
   for (i=0; i<companySalesData.length; i++){
     for (j=0; j<companySalesData[i].sales.length; j++){
       if (j === 0){
-        results[companySalesData[i]["totalSales"]] = 0 ;
+        total[i] = 0 ;
         // results[companySalesData[i].company = companySalesData[i].name;
       }
-        results[companySalesData[i]["totalSales"]] += companySalesData[i].sales[j];
+        total[i] += companySalesData[i].sales[j];
     }
-    console.log(results);
-    length += 1;
+
   }
   var taxes = [];
-  for (i=0; i < length; i++){
+  var company = [];
+  for (i=0; i < total.length; i++){
     var taxRate= salesTaxRates[companySalesData[i].province];
-    results[companySalesData[i]["totalTaxes"]] = taxRate * results[companySalesData[i]["totalSales"]];
+    taxes[i] = taxRate * total[i];
+    company[i] = companySalesData[i].name;
   }
-  console.log(results);
+  // console.log(taxes[0]);
+  // console.log(total[0]);
+  // console.log(company[0]);
+  var results = {};
+  for (i=0; i <company.length; i++){
+    if (company[i] in results){
+     results[company[i]].totalSales += total[i];
+     results[company[i]].totalTaxes += taxes[i];
+    }
+    else {
+      results[company[i]] = { totalSales: total[i],
+                              totalTaxes: taxes[i]};
+    }
+  }
+  return results;
 }
 
-
-
 var results = calculateSalesTax(companySalesData, salesTaxRates);
+console.log(results);
 
 /* Expected Results:
 {
@@ -62,4 +75,7 @@ var results = calculateSalesTax(companySalesData, salesTaxRates);
     totalTaxes: 40
   }
 }
+
+object = {}
+object[company[0]] = {total salee etc...}
 */
