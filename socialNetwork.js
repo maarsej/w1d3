@@ -42,18 +42,14 @@ for (var user in data){
     //console.log(output1);
   }
 }
-console.log(output1);
+// console.log(output1);
 
 //Identify who has the most followers
 
 var mostFollowers = {};
 for (var user in data){
-  //console.log(user);
-  for (i = 0; i<data[user].follows.length; i++){
     for (var followers in data){
-      //console.log(followees);
-      //console.log(data[followers].follows[i]);
-      if (user == data[followers].follows[i]){
+      if (data[followers].follows.includes(user)) {
         if (user in mostFollowers){
           mostFollowers[user].follows += 1;
 
@@ -65,15 +61,23 @@ for (var user in data){
       }
     }
   }
-}
-// console.log(mostFollows);
+// console.log(mostFollowers);
 var most = 0;
 var output2 = {};
 for (var user in mostFollowers){
   //console.log(mostFollows[user]);
   if (mostFollowers[user].follows > most){
+    output2={};
     most = mostFollowers[user].follows;
     output2['Most Followers'] = data[user].name;
+  }
+  else if (mostFollowers[user].follows = most && output2['Tied with'] !== undefined){
+    output2['Tied with'] += " and " + data[user].name;
+    //console.log(output2);
+  }
+  else if (mostFollowers[user].follows = most){
+    output2['Tied with'] = data[user].name;
+    //console.log(output2);
   }
 }
 
