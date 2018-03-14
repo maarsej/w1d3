@@ -25,10 +25,27 @@ var companySalesData = [
 
 function calculateSalesTax(salesData, taxRates) {
    // Implement your code here
-   var total =0;
-  total = companySalesData.sales[0];
+  var total =[];
+  var results = {};
+  var length = 0;
+  for (i=0; i<companySalesData.length; i++){
+    for (j=0; j<companySalesData[i].sales.length; j++){
+      if (j === 0){
+        results[companySalesData[i]["totalSales"]] = 0 ;
+        // results[companySalesData[i].company = companySalesData[i].name;
+      }
+        results[companySalesData[i]["totalSales"]] += companySalesData[i].sales[j];
+    }
+    console.log(results);
+    length += 1;
+  }
+  var taxes = [];
+  for (i=0; i < length; i++){
+    var taxRate= salesTaxRates[companySalesData[i].province];
+    results[companySalesData[i]["totalTaxes"]] = taxRate * results[companySalesData[i]["totalSales"]];
+  }
+  console.log(results);
 }
-console.log(total);
 
 
 
