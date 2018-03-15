@@ -13,7 +13,7 @@ var data = {
   f03: {
     name: "Charlie",
     age: 35,
-    follows: ["f01", "f04", "f06"]
+    follows: ["f01", "f04","f06"]
   },
   f04: {
     name: "Debbie",
@@ -42,7 +42,7 @@ for (var user in data){
     //console.log(output1);
   }
 }
-// console.log(output1);
+console.log(output1);
 
 //Identify who has the most followers
 
@@ -65,17 +65,18 @@ for (var user in data){
 var most = 0;
 var output2 = {};
 for (var user in mostFollowers){
-  //console.log(mostFollows[user]);
+  // console.log(mostFollowers[user]);
   if (mostFollowers[user].follows > most){
     output2={};
     most = mostFollowers[user].follows;
+    // console.log(most);
     output2['Most Followers'] = data[user].name;
   }
-  else if (mostFollowers[user].follows = most && output2['Tied with'] !== undefined){
+  else if (mostFollowers[user].follows === most && output2['Tied with'] !== undefined){
     output2['Tied with'] += " and " + data[user].name;
     //console.log(output2);
   }
-  else if (mostFollowers[user].follows = most){
+  else if (mostFollowers[user].follows === most){
     output2['Tied with'] = data[user].name;
     //console.log(output2);
   }
